@@ -1,0 +1,13 @@
+{
+    "name": "sharo_kirima",
+    "description": "",
+    "version": "1.0.0-snapshot",
+    "author": "DanielaGC_",
+    "main": "index.js",
+    "scripts": {
+        "start": "node ."
+    },
+    "dependencies": {
+        "discord.js": "github:discordjs/discord.js#master"
+    }
+}

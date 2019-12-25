@@ -1,0 +1,5 @@
+{
+    "prefix": "Your bot prefix",
+    "token": "Your bot token, please visit https://discordapp.com/developers/applications/ to get",
+    "owner: ["Owner ID"]
+}
