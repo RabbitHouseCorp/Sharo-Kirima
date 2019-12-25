@@ -6,7 +6,7 @@ module.exports = class MessageReactionAddReceive {
 
     run (reaction, user) {
         if (user.id === "297153970613387264") {
-            let emoji = reaction.emoji.name === "lori_gift" || reaction.emoji.name === "green_gift" || reaction.emoji.name === "pink_gift"
+            let emoji = reaction.emoji.name === "lori_gift" || reaction.emoji.name === "green_gift" || reaction.emoji.name === "pink_gift" || reaction.emoji.name === "blue_heart"
             if (emoji) {
                 let link = `https://canary.discordapp.com/channels/${reaction.message.guild.id}/${reaction.message.channel.id}/${reaction.message.id}`
                 let channel = this.client.channels.get("659196669895901185")

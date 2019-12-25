@@ -10,7 +10,7 @@ module.exports = class MessageReceive {
         if (message.author.bot) return
 
         if (!message.content.startsWith(config.prefix)) return
-        const args = message.content.slice(config.prefix.length).trim().split(/ +g/)
+        const args = message.content.slice(config.prefix.length).trim().split(" ")
         const commands = args.shift().toLowerCase()
         const cmd = this.client.commands.get(commands) || this.client.commands.get(this.client.aliases.get(commands))
         if (!cmd) return
@@ -21,12 +21,19 @@ module.exports = class MessageReceive {
                 return
             }
         }
-        
-        new Promise((res, rej) => {
-            message.channel.startTyping()
-            res(cmd.run(message, args))
-        }).then(() => {
+        try {
+            new Promise((res, rej) => {
+                message.channel.startTyping()
+                res(cmd.run(message, args))
+            }).then(() => {
+                message.channel.stopTyping()
+            }).catch(err => {
+                message.channel.stopTyping()
+                console.error(err.stack)
+            })
+        } catch (err) {
             message.channel.stopTyping()
-        })
+            console.error(err.stack)
+        }
     }
 }
