@@ -12,13 +12,13 @@ module.exports = class AnimuCommand extends Command {
 
     async run(message, args) {
         if (!message.member.voice.channel) return message.reply("you are not on any voice channels.")
+        let info = fetch("http://cast.animu.com.br:2199/rpc/animufm/streaminfo.get")
+        let infoJson = info.then(res => res.json())
+        let format = message.guild.icon.startsWith("a_") ? "gif" : "webp"
         if (["join", "entrar"].includes(args[0])) {
             message.member.voice.channel.join().then(connection => {
                 this.client.user.setPresence({ activity: { name: "Animu FM Radio Station - The Most Moe Radio of Brazil!", type: "LISTENING" } })
                 connection.play("http://cast.animu.com.br:9021/stream", { volume: 0.5 })
-                let info = fetch("http://cast.animu.com.br:2199/rpc/animufm/streaminfo.get")
-                let infoJson = info.then(res => res.json())
-                let format = message.guild.icon.startsWith("a_") ? "gif" : "webp"
                 infoJson.then(infoData => {
                     let moreInfo = infoData.data[0]
                     let volume = message.guild.voice.connection ? message.guild.voice.connection.player.dispatcher.volume * 100 : "0"
@@ -33,9 +33,6 @@ module.exports = class AnimuCommand extends Command {
         }
 
         if (["tocando", "np", "nowplaying"].includes(args[0])) {
-            let info = fetch("http://cast.animu.com.br:2199/rpc/animufm/streaminfo.get")
-            let infoJson = info.then(res => res.json())
-            let format = message.guild.icon.startsWith("a_") ? "gif" : "webp"
             infoJson.then(infoData => {
                 let moreInfo = infoData.data[0]
                 let volume = message.guild.voice.connection ? message.guild.voice.connection.player.dispatcher.volume * 100 : "0"
@@ -50,7 +47,8 @@ module.exports = class AnimuCommand extends Command {
         }
 
         if (["volume", "vol"].includes(args[0])) {
-            if (!args[1]) return message.reply("you need input a value for volume.")
+            if (!message.guild.voice.connection) return message.reply("I need to be on some voice channel for me to perform this action.")
+            if (!args[1]) return message.reply(`my volume is \`${message.guild.voice.connection.player.dispatcher.volume}/100\``)
             if (parseInt(args[1]) > 100) return message.reply("respect the limit, the maximum volume is 100.")
             message.guild.voice.connection.player.dispatcher.setVolume((parseInt(args[1]) / 100))
             message.reply(`volume successfully changed to ${parseInt(args[1])}/100.`)
