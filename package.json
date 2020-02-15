@@ -12,6 +12,7 @@
         "ffmpeg": "0.0.4",
         "ffmpeg-static": "^4.0.1",
         "node-fetch": "^2.6.0",
+        "node-opus": "^0.3.3",
         "opusscript": "0.0.7",
         "snekfetch": "^4.0.4"
     }
