@@ -8,6 +8,11 @@
         "start": "node ."
     },
     "dependencies": {
-        "discord.js": "github:discordjs/discord.js#master"
+        "discord.js": "github:discordjs/discord.js#master",
+        "ffmpeg": "0.0.4",
+        "ffmpeg-static": "^4.0.1",
+        "node-fetch": "^2.6.0",
+        "opusscript": "0.0.7",
+        "snekfetch": "^4.0.4"
     }
 }
