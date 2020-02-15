@@ -59,7 +59,13 @@ module.exports = class AnimuCommand extends Command {
         if (["leave", "sair", "parar", "stop"].includes(args[0])) {
             message.guild.me.voice.channel.leave()
             message.reply("I'm leaving from this channel.")
-            this.client.emit("ready")
+            this.client.user.setPresence({
+                activity: {
+                    name: "Rabbit House Coffee ☕🐰",
+                    type: "STREAMING",
+                    url: "https://www.twitch.tv/danielagc"
+                }
+            })
         }
     }
 }

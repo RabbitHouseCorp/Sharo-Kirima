@@ -8,7 +8,7 @@ module.exports = class ReadyReceive {
         console.log("Successfully connected")
         this.client.user.setPresence({
             activity: {
-                name: "🎁 Merry Christmas 🎅",
+                name: "Rabbit House Coffee ☕🐰",
                 type: "STREAMING",
                 url: "https://www.twitch.tv/danielagc"
             }

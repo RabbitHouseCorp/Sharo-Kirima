@@ -21,7 +21,13 @@ module.exports = class VoiceStateUpdateReceive {
             let oldVc = oldMember.guild.channels.cache.get(oldVoiceChannel)
             if (oldVc.members.get(this.client.user.id) && oldVc.members.size === 1) {
                 oldVc.leave()
-                this.client.emit("ready")
+                this.client.user.setPresence({
+                    activity: {
+                        name: "Rabbit House Coffee ☕🐰",
+                        type: "STREAMING",
+                        url: "https://www.twitch.tv/danielagc"
+                    }
+                })
             }
         }
     }
