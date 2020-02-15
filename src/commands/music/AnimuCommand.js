@@ -48,7 +48,7 @@ module.exports = class AnimuCommand extends Command {
 
         if (["volume", "vol"].includes(args[0])) {
             if (!message.guild.voice.connection) return message.reply("I need to be on some voice channel for me to perform this action.")
-            if (!args[1]) return message.reply(`my volume is \`${message.guild.voice.connection.player.dispatcher.volume}/100\``)
+            if (!args[1]) return message.reply(`my volume is \`${message.guild.voice.connection.player.dispatcher.volume * 100}/100\``)
             if (parseInt(args[1]) > 100) return message.reply("respect the limit, the maximum volume is 100.")
             message.guild.voice.connection.player.dispatcher.setVolume((parseInt(args[1]) / 100))
             message.reply(`volume successfully changed to ${parseInt(args[1])}/100.`)
