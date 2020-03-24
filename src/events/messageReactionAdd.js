@@ -5,7 +5,7 @@ module.exports = class MessageReactionAddReceive {
     }
 
     run(reaction, user) {
-        if (user.id === "297153970613387264") {
+        if (["297153970613387264", "395935916952256523"].includes(user.id)) {
             let link = `https://canary.discordapp.com/channels/${reaction.message.guild.id}/${reaction.message.channel.id}/${reaction.message.id}`
             let star = ["🌠"]
             let emoji = ["pink_heart", "lori_gift", "green_gift", "blue_heart", "pink_gift", "purple_heart", "green_heart", "christmas_hat", "christmas_tree", "🎄"]
