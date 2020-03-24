@@ -22,7 +22,7 @@ module.exports = class MessageReactionAddReceive {
             if (emoji.includes(reaction.emoji.name)) {
                 let embed = new MessageEmbed()
                     .setColor(this.client.colors.default)
-                    .addField(`${this.client.emotes.sharo_happy} Apareceu um presente`, `Parece que o papai noel deixou um presente cair no ${reaction.message.channel}, corra enquanto da tempo, pegue o presente e seja feliz ${this.client.emotes.sharo_hug_chino}`)
+                    .addField(`${this.client.emotes.sharo_happy} Apareceu um presente`, `Seja rápido, não perca esse presente que apareceu no ${reaction.message.channel}, corra enquanto da tempo, pegue o presente e seja feliz ${this.client.emotes.sharo_hug_chino}`)
                     .addField(`${this.client.emotes.sharo_dying} Pegue rápido`, `🎁 Você pode pegar o presente clicando [aqui](${link})`)
 
                 channel.send(embed)
