@@ -10,7 +10,7 @@ module.exports = class ReadyReceive {
 	embed.setDescription("Sabia que outros servidores estão participando e apoiando o evento da Loritta? Não? Agora você está sabendo, logo abaixo, você encontrará os outros servidores participantes.")
 	embed.addField("Outros servidores", "[SweetLand](https://discord.gg/f6zz27a)")
 	setInterval(() => {
-            this.client.channels.get("659196915107495936").send(embed)
+            this.client.channels.cache.get("659196915107495936").send(embed)
         }, 1800000)
 	let stats = [
             {
