@@ -8,7 +8,7 @@ module.exports = class ReadyReceive {
     	const embed = new MessageEmbed ()
 	embed.setColor(this.client.colors.default)
 	embed.setDescription("Sabia que outros servidores estão participando e apoiando o evento da Loritta? Não? Agora você está sabendo, logo abaixo, você encontrará os outros servidores participantes.")
-	embed.addField("Outros servidores", "[SweetLand](https://discord.gg/7Gzy5Dm)\n[Pessoas maravilhosas](https://discord.gg/6sVcFNf)")
+	embed.addField("Outros servidores", "[SweetLand](https://discord.gg/7Gzy5Dm)")
 	setInterval(() => {
             this.client.channels.cache.get("659196915107495936").send(embed)
         }, 1800000)
