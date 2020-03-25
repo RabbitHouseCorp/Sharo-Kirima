@@ -27,9 +27,7 @@ module.exports = class ReadyReceive {
         console.log("Successfully connected")
         setInterval(() => {
             this.client.user.setPresence({
-                activity: {
-                    stats[Math.floor(Math.random() * stats.length)]
-                }
+                activity: stats[Math.floor(Math.random() * stats.length)]
             })
         }, 15000)
     }
