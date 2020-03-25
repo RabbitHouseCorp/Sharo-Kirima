@@ -12,7 +12,7 @@ module.exports = class ReadyReceive {
 	setInterval(() => {
             this.client.channels.get("659196915107495936").send(embed)
         }, 1800000)
-	let stats =  [
+	let stats = [
             {
 	        name: "Rabbit House Coffee ☕🐰",
                 type: "STREAMING",
