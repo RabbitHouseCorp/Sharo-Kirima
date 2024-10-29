@@ -1,5 +1,12 @@
 {
-    "prefix": "Your bot prefix",
-    "token": "Your bot token, please visit https://discordapp.com/developers/applications/ to get",
-    "owner: ["Owner ID"]
+  "token": "The token of your bot",
+  "prefix": "The prefix of your bot",
+  "owner": ["Your ID"],
+  "options": {
+    "allowedMentions": {
+      "parse": ["users"],
+      "repliedUser": true
+    },
+    "intents": 38411
+  }
 }
