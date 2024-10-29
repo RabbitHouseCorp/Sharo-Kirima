@@ -7,7 +7,7 @@ module.exports = class ReadyReceive {
     let stats = [
       {
         name: 'Happy Halloween',
-        state: ' Happy Halloween',
+        state: '🎃 Happy Halloween',
         type: 4
       }
     ]
