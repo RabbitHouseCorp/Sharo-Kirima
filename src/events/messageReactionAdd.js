@@ -25,18 +25,18 @@ module.exports = class MessageReactionAddReceive {
         default:
           message_content = `Um doce apareceu no <#${reaction_channel.id}>! Corra e pegue antes que vença!\n\n${message_url}`
           title = 'Um doce foi descoberto!'
-}
-        const embed = {
-          title,
-          description: message_content,
-          color: resolveColor(this.client.colors.default),
-          footer: {
-            text: 'This message was sent on 2024 Loritta\'s Halloween event'
-          }
+      }
+      const embed = {
+        title,
+        description: message_content,
+        color: resolveColor(this.client.colors.default),
+        footer: {
+          text: 'This message was sent on 2024 Loritta\'s Halloween event'
         }
-        
-        channel.send({ embeds: [embed] })
-        return
+      }
+
+      channel.send({ embeds: [embed] })
+      return
       }
     }
   }
