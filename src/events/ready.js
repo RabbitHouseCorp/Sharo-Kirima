@@ -5,11 +5,11 @@ module.exports = class ReadyReceive {
 
   run() {
     let stats = [
-	    {
-		  name: 'Happy Halloween',
-		  state: ' Happy Halloween',
-		  type: 4
-        }
+      {
+        name: 'Happy Halloween',
+        state: ' Happy Halloween',
+        type: 4
+      }
     ]
 
     setInterval(() => {
