@@ -1,4 +1,5 @@
-const { MessageEmbed } = require("discord.js")
+const { resolveColor} = require("discord.js")
+const emojis = require ('../settings/emojis.json')
 module.exports = class MessageReactionAddReceive {
     constructor(client) {
         this.client = client
@@ -6,29 +7,35 @@ module.exports = class MessageReactionAddReceive {
 
     run(reaction, user) {
         if (["297153970613387264", "395935916952256523"].includes(user.id)) {
-            let link = `https://canary.discordapp.com/channels/${reaction.message.guild.id}/${reaction.message.channel.id}/${reaction.message.id}`
-            let star = ["🌠"]
-            let emoji = ["happy_birthday", "loritta_morenitta"]
-            let channel = this.client.channels.cache.get("659196669895901185")
-            if (star.includes(reaction.emoji.name)) {
-                let starEmbed = new MessageEmbed()
-                    .setColor(this.client.colors.default)
-                    .addField(`${this.client.emotes.sharo_excited} Surguiu uma estrela cadente!`, `Uma estrela cadente acabou de aparecer! Vá e pegue ela rápido antes que o tempo esgote!`)
-                    .addField(`${this.client.emotes.sharo_dying} Pegue rápido`, `🌠 Você pode pegar a estrela clicando [aqui](${link})`)
+            const message_url = `https://canary.discord.com/channels/${reaction.message.guild.id}/${reaction.message.channel.id}/${reaction.message.id}`
+            const reaction_channel = this.client.channels.cache.find(it => it.id === reaction.message.channelId)
+            const channel = this.client.channels.cache.find(it => it.id === "1300747974258855956")
+            if (emojis.list.includes(reaction.emoji.name)) {
+              let message_content;
+              let title;
+              switch (reaction.emoji.name) {
+                case 'gabriela':
+                  message_content = `Uma Gabriela apareceu no <#${reaction_channel.id}>! Corra e a capture antes que ela fuja!\n\n${message_url}`
+                  title = 'A Gabriela deu as caras!'
+                break;
+                case 'loritta':
+                  message_content = `Uma Loritta apareceu no <#${reaction_channel.id}>! Corra e a capture antes que ela fuja!\n\n${message_url}`
+                  title = 'A Loritta deixou de se esconder!'
+                break;
+                default:
+                  message_content = `Um doce apareceu no <#${reaction_channel.id}>! Corra e pegue antes que vença!\n\n${message_url}`
+                  title = 'Um doce foi descoberto!'
+              }
+              const embed = {
+                  title,
+                  description: message_content,
+                  color: resolveColor(this.client.colors.default),
+                  footer: {
+                    text: 'This message was sent on 2024 Loritta\'s Halloween event'
+                  }
+                }
 
-                channel.send(starEmbed)
-                return
-            }
-            if (emoji.includes(reaction.emoji.name)) {
-                let embed = new MessageEmbed()
-                    .setTitle("Olha o presente")
-                    .setURL(link)
-                    .setColor(this.client.colors.default)
-                    .addField(`${this.client.emotes.sharo_happy} Apareceu um presente`, `Seja rápido, não perca esse presente que apareceu no ${reaction.message.channel}, corra enquanto da tempo, pegue o presente e seja feliz ${this.client.emotes.sharo_hug_chino}`)
-                    .addField(`${this.client.emotes.sharo_dying} Pegue rápido`, `🎁 Você pode pegar o presente clicando [aqui](${link})`)
-
-                channel.send(embed)
-
+                channel.send({ embeds: [embed] })
                 return
             }
         }

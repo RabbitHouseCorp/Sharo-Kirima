@@ -1,9 +1,6 @@
-const config = require("./config")
+const config = require("./src/settings/config")
 const Client = require("./src/SharoClient")
-const client = new Client({
-    fetchAllMembers: true,
-    disableEveryone: true
-})
+const client = new Client(config.options)
 
 client.login(config.token)
 client.loadCommands("./src/commands")

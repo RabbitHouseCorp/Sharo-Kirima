@@ -1,4 +1,4 @@
-const config = require("../../config")
+const config = require("../settings/config")
 module.exports = class MessageReceive {
     constructor(client) {
         this.client = client
@@ -23,16 +23,11 @@ module.exports = class MessageReceive {
         }
         try {
             new Promise((res, rej) => {
-                message.channel.startTyping()
                 res(cmd.run(message, args))
-            }).then(() => {
-                message.channel.stopTyping()
             }).catch(err => {
-                message.channel.stopTyping()
                 console.error(err.stack)
             })
         } catch (err) {
-            message.channel.stopTyping()
             console.error(err.stack)
         }
     }

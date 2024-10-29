@@ -1,5 +1,5 @@
 const Command = require("../../structures/commands")
-const { MessageEmbed } = require("discord.js")
+const { resolveColor } = require("discord.js")
 module.exports = class EvalCommand extends Command {
     constructor (client) {
         super(client, {
@@ -24,7 +24,7 @@ module.exports = class EvalCommand extends Command {
                 str = `${str}...`
             }
 
-            message.channel.send(`${str}`, { code: "js" })
+            message.channel.send(`\`\`\`js\n${str}\`\`\``)
 
         } catch (err) {
             if (err.stack.length > 1800) {
@@ -32,12 +32,13 @@ module.exports = class EvalCommand extends Command {
                 err.stack = `${err.stack}...`
             }
 
-            const embed = new MessageEmbed()
-            .setColor(this.client.colors.default)
-            .setTitle("Não, não, não! Deu um erro ao executar isso.")
-            .setDescription(`\`\`\`${err.stack}\`\`\``)
+            const embed = {
+              title: 'No, no, no! An error occurred while you tried to execute this code!',
+              description: `\`\`\`${err.stack}\`\`\``,
+              color: resolveColor(this.client.colors['default'])
+            }
 
-            message.channel.send(embed)
+            message.channel.send({ embeds: [embed] })
         }
     }
 }
